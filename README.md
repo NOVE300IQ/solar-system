@@ -11,4 +11,4 @@ you can clone this repo and open it with your code editor (i prefer vs code) the
 
 # preview 
 
-![preview](/images/ss)
+![preview](/images/ss.png)
