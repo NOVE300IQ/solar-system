@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Solar System :D</title>
+        <link rel="stylesheet" href="main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="space-viewport" id="viewport">
+            <div class="solar-system" id="solarSystem">
+                <div class="sun-wrapper">
+                    <img src="images/sun.png" alt="Very Hot" class="sun">
+                    <div class="info-card">
+                        <h3>The Sun</h3>
+                        <p>the fiery heart and center of our solar system!</p>
+                    </div>
+                </div>
+                <div class="orbit mercury-orbit">
+                    <div class="planet-wrapper mercury-wrapper">
+                        <img src="images/mercury.png" alt="Neighbour of Sun" class="planet">
+                        <div class="info-card">
+                            <h3>Mercury</h3>
+                            <p>sun's neighbout and smallest planet.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="orbit venus-orbit">
+                    <div class="planet-wrapper venus-wrapper">
+                        <img src="images/venus.png" alt="Hmm iam also hot" class="planet">
+                        <div class="info-card">
+                            <h3>Venus</h3>
+                            <p>super hot with toxic, thick yellow clouds.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="orbit earth-orbit">
+                    <div class="planet-wrapper earth-wrapper">
+                        <img src="images/earth.png" class="planet" alt="Our Homeland">
+                        <div class="info-card">
+                            <h3>Earth</h3>
+                            <p>Our Homeland! the only heaven for life</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="orbit mars-orbit">
+                    <div class="planet-wrapper mars-wrapper">
+                        <img src="/images/mars.png" alt="life ?" class="planet";>
+                        <div class="info-card">
+                            <h3>Mars</h3>
+                            <p>dust red planet with giant volcanos (are there any life)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="orbit jupiter-orbit">
+                    <div class="planet-wrapper jupiter-wrapper">
+                        <img src="images/jupiter.png" alt="Guardian" class="planet";>
+                        <div class="info-card">
+                            <h3>Jupiter</h3>
+                            <p>The Gas GIANT :O. also protects us from meteors</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="orbit saturn-orbit">
+                    <div class="planet-wrapper saturn-wrapper">
+                        <img src="images/saturn.png" alt="beautiful rings" class="planet">
+                        <div class="info-card">
+                            <h3>Saturn</h3>
+                            <p>famous for its breathtaking icy rings :D.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="orbit uranus-orbit">
+                    <div class="planet-wrapper uranus-wrapper">
+                        <img src="images/uranus.png" class="planet" alt="icy GIANT">
+                        <div class="info-card">
+                            <h3>Uranus</h3>
+                            <p>An icy giant that rolls on its side ;[]</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="orbit neptune-orbit">
+                    <div class="planet-wrapper neptune-wrapper">
+                        <img src="images/neptune.png" class="planet" alt="longer guy">
+                        <div class="info-card">
+                            <h3>Neptune</h3>
+                            <p>The distant, windy, deep-blue iced guy ( he is alone :[ )</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script>
+        const viewport = document.getElementById('viewport');
+        const solarSystem = document.getElementById('solarSystem');
+
+        let scale = 1;
+        let panX = 0;
+        let panY = 0;
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+
+        function updateTransform() {
+            solarSystem.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+        }
+
+        viewport.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const zoomSpeed = 0.0012;
+            scale -= e.deltaY * zoomSpeed;
+            scale = Math.min(Math.max(0.4, scale), 2.5);
+            updateTransform();
+        }, { passive: false });
+
+        viewport.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX - panX;
+             startY = e.clientY - panY;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            panX = e.clientX - startX;
+            panY = e.clientY - startY;
+            updateTransform();
+        });
+
+        window.addEventListener('mouseup', () => {
+                isDragging = false;
+        });
+  </script>
+    </body>
+</html>
